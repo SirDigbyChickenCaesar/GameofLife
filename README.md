@@ -1,3 +1,5 @@
 GameofLife
 ==========
-GameOfLife written in C. Will eventually add SDL after text version works.
+Version 0.1:
+
+Added file I/O headers and functions as well as a main
