@@ -34,3 +34,19 @@ void closeFile (FILE *input)
     }
 }
 
+void getGameHeight (FILE *input, int *height)
+{
+	if ((fscanf(input, "%d ", height)) == 0)
+	{
+		printf("Failed to get height of board");
+	}
+}
+
+void getGameWidth (FILE *input, int *width)
+{
+	if ((fscanf(input, "%d", width)) == 0)
+	{
+		printf("Failed to get width of board");
+	}
+}
+
