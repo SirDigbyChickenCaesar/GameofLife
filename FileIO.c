@@ -11,7 +11,7 @@ FILE *openFile (char *input)
 			if (input == NULL)
 			{
 				printf("Include file name as arguement");
-				printf(" (e.g.) ./assembler filename.asm\n");
+				printf(" (e.g.) ./gameoflife <YourTextFile>\n");
 			}
 			else
 			{
