@@ -7,11 +7,15 @@ int main (int argc, char *argv[])
 	FILE		*file;
 	int			height, *pHeight = &height;
 	int			width, *pWidth = &width;
+	int			play = 0, run;
+	char		**gameBoard;
 
+	/*------------Game Set-up-----------*/
+	run = plays (play);
 	file = openFile (argv[1]);
 	getGameHeight (file, pHeight);
 	getGameWidth (file, pWidth);
-	printf("Width: %d\n", width);
-	printf("Height: %d\n", height);
+	gameBoard = createBoard (height, width);
+	copyBoard (file, gameBoard, height, width);
 	closeFile (file);
 }

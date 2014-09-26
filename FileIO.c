@@ -50,3 +50,52 @@ void getGameWidth (FILE *input, int *width)
 	}
 }
 
+char **createBoard (int height, int width)
+{
+	char 	**gameBoard;
+	int		i;
+
+	gameBoard = malloc (height*sizeof(char*));
+	{
+		if (gameBoard == NULL)	//If memory allocation fails
+		{
+			printf("Memory Allocation failed!\n");
+		}
+	}
+	for (i = 0; i < height; i++)
+	{
+		gameBoard[i] = malloc(width*sizeof(char));
+		if (gameBoard[i] == NULL) //If memory allocation fails
+		{
+			printf("Memory Allocation failed!\n");
+		}
+	}
+	return gameBoard;
+}
+
+void copyBoard (FILE *input, char **fileBoard, int height, int width)
+{
+	int 	i, j;
+
+	for (i = 0; i < height; i++)
+	{
+		for (j = 0; j < width; j++)
+		{
+			fscanf(input, "\n%c", &fileBoard[i][j]);
+		}
+	}
+
+	for (i = 0; i < height; i++){
+		for (j = 0; j < width; j++){
+			printf("%c", fileBoard[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+int plays (int play)
+{
+	printf("How many times do you want to play the game of life?\n");
+	scanf("%d", &play);
+	return play;
+}
