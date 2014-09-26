@@ -85,17 +85,9 @@ void copyBoard (FILE *input, char **fileBoard, int height, int width)
 		}
 	}
 
-	for (i = 0; i < height; i++){
-		for (j = 0; j < width; j++){
-			printf("%c", fileBoard[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-int plays (int play)
-{
-	printf("How many times do you want to play the game of life?\n");
-	scanf("%d", &play);
-	return play;
+	// for (i = 0; i < height; i++){
+	// 	for (j = 0; j < width; j++){
+	// 		printf("%c", fileBoard[i][j]);
+	// 	}
+	// 	printf("\n");
 }

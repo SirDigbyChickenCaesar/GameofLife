@@ -12,5 +12,3 @@ char **createBoard (int height, int width);
 //This function creates a dynamic 2D array using the user-defined size.
 void copyBoard (FILE *input, char **fileBoard, int height, int width);
 //This function copies the board from the file into the array
-int plays (int play);
-//This function asks how many times the user wants to run the Game of Life rules
