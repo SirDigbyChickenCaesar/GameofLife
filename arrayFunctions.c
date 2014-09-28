@@ -2,12 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define		BORDER		1
+
 void printArray (char **game, int height, int width)
 {
 	int		i, j;
 
-	for (i = 0; i < height; i++){
-		for (j = 0; j < width; j++){
+	for (i = 0; i < (height+BORDER); i++){
+		for (j = 0; j < (width+BORDER); j++){
 			printf("%c", game[i][j]);
 		}
 		printf("\n");

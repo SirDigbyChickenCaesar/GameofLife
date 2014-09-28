@@ -8,7 +8,9 @@
 #define		CLOSEERROR		3
 #define		HEIGHTERROR		4
 #define		WIDTHERROR		5
-#define		MALLOCERROR		6		
+#define		MALLOCERROR		6
+
+#define		BORDER			1		
 
 FILE *openFile (char *input)
 {
@@ -62,16 +64,16 @@ char **createBoard (int height, int width)
 	char 	**gameBoard;
 	int		i;
 
-	gameBoard = malloc (height*sizeof(char*));
+	gameBoard = malloc ((height+BORDER)*sizeof(char*));
 	{
 		if (gameBoard == NULL)	//If memory allocation fails
 		{
 			printError(MALLOCERROR);
 		}
 	}
-	for (i = 0; i < height; i++)
+	for (i = 0; i < (height+BORDER); i++)
 	{
-		gameBoard[i] = malloc(width*sizeof(char));
+		gameBoard[i] = malloc((width+BORDER)*sizeof(char));
 		if (gameBoard[i] == NULL) //If memory allocation fails
 		{
 			printError(MALLOCERROR);
@@ -84,11 +86,8 @@ void copyBoard (FILE *input, char **fileBoard, int height, int width)
 {
 	int 	i, j;
 
-	for (i = 0; i < height; i++)
-	{
-		for (j = 0; j < width; j++)
-		{
+	for (i = BORDER; i < height; i++)
+		for (j = BORDER; j < width; j++) {
 			fscanf(input, "\n%c", &fileBoard[i][j]);
 		}
-	}
 }
