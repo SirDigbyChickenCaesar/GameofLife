@@ -1,6 +1,14 @@
 #include "FileIO.h"
+#include "printErr.c"
 #include <stdio.h>
 #include <stdlib.h>
+
+#define 	NOARGUMENT		1
+#define		NOFILE			2
+#define		CLOSEERROR		3
+#define		HEIGHTERROR		4
+#define		WIDTHERROR		5
+#define		MALLOCERROR		6		
 
 FILE *openFile (char *input)
 {
@@ -10,13 +18,12 @@ FILE *openFile (char *input)
 	{
 			if (input == NULL)
 			{
-				printf("Include file name as arguement");
-				printf(" (e.g.) ./gameoflife <YourTextFile>\n");
+				printError(NOARGUMENT);
 			}
 			else
 			{
-				printf("%s does not exist or", input);
-				printf(" failed to open file for reading\n");
+				printf("%s ", input);
+				printError(NOFILE);
 			}
 			exit(1);	
 	}
@@ -30,7 +37,7 @@ void closeFile (FILE *input)
 {
 	if (fclose(input) != 0)
 	{
-    	printf("Error closing the file!\n");
+    	printError(CLOSEERROR);
     }
 }
 
@@ -38,7 +45,7 @@ void getGameHeight (FILE *input, int *height)
 {
 	if ((fscanf(input, "%d ", height)) == 0)
 	{
-		printf("Failed to get height of board");
+		printError(HEIGHTERROR);
 	}
 }
 
@@ -46,7 +53,7 @@ void getGameWidth (FILE *input, int *width)
 {
 	if ((fscanf(input, "%d", width)) == 0)
 	{
-		printf("Failed to get width of board");
+		printError(WIDTHERROR);
 	}
 }
 
@@ -59,7 +66,7 @@ char **createBoard (int height, int width)
 	{
 		if (gameBoard == NULL)	//If memory allocation fails
 		{
-			printf("Memory Allocation failed!\n");
+			printError(MALLOCERROR);
 		}
 	}
 	for (i = 0; i < height; i++)
@@ -67,7 +74,7 @@ char **createBoard (int height, int width)
 		gameBoard[i] = malloc(width*sizeof(char));
 		if (gameBoard[i] == NULL) //If memory allocation fails
 		{
-			printf("Memory Allocation failed!\n");
+			printError(MALLOCERROR);
 		}
 	}
 	return gameBoard;
@@ -84,10 +91,4 @@ void copyBoard (FILE *input, char **fileBoard, int height, int width)
 			fscanf(input, "\n%c", &fileBoard[i][j]);
 		}
 	}
-
-	// for (i = 0; i < height; i++){
-	// 	for (j = 0; j < width; j++){
-	// 		printf("%c", fileBoard[i][j]);
-	// 	}
-	// 	printf("\n");
 }
