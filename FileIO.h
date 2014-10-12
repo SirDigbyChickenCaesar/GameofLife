@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define 	BORDER		2 
+
 FILE *openFile (char *input);
 //Function which opens the file for reading
 void closeFile (FILE *input);

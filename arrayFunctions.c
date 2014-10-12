@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define		BORDER		1
 
 void printArray (char **game, int height, int width)
 {

@@ -1,16 +1,8 @@
 #include "FileIO.h"
-#include "printErr.c"
+#include "printErr.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-#define 	NOARGUMENT		1
-#define		NOFILE			2
-#define		CLOSEERROR		3
-#define		HEIGHTERROR		4
-#define		WIDTHERROR		5
-#define		MALLOCERROR		6
-
-#define		BORDER			1		
+		
 
 FILE *openFile (char *input)
 {
@@ -62,7 +54,7 @@ void getGameWidth (FILE *input, int *width)
 char **createBoard (int height, int width)
 {
 	char 	**gameBoard;
-	int		i;
+	int		i, j;
 
 	gameBoard = malloc ((height+BORDER)*sizeof(char*));
 	{
@@ -79,6 +71,13 @@ char **createBoard (int height, int width)
 			printError(MALLOCERROR);
 		}
 	}
+
+	for (i = 0; i < (height+BORDER); i++)
+		for (j = 0; j < (width+BORDER); j++)
+		{
+			gameBoard[i][j] = '!';
+		}
+	//DEBUG printArray(gameBoard, height, width);
 	return gameBoard;
 }
 
