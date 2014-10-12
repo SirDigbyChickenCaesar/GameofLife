@@ -58,7 +58,7 @@ char **createBoard (int height, int width)
 
 	gameBoard = malloc ((height+BORDER)*sizeof(char*));
 	{
-		if (gameBoard == NULL)	//If memory allocation fails
+		if (gameBoard == NULL)
 		{
 			printError(MALLOCERROR);
 		}
@@ -66,18 +66,11 @@ char **createBoard (int height, int width)
 	for (i = 0; i < (height+BORDER); i++)
 	{
 		gameBoard[i] = malloc((width+BORDER)*sizeof(char));
-		if (gameBoard[i] == NULL) //If memory allocation fails
+		if (gameBoard[i] == NULL)
 		{
 			printError(MALLOCERROR);
 		}
 	}
-
-	for (i = 0; i < (height+BORDER); i++)
-		for (j = 0; j < (width+BORDER); j++)
-		{
-			gameBoard[i][j] = '!';
-		}
-	//DEBUG printArray(gameBoard, height, width);
 	return gameBoard;
 }
 

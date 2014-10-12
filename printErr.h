@@ -7,7 +7,5 @@
 #define		WIDTHERROR		5
 #define		MALLOCERROR		6
 
-#define		BORDER			2
-
 void printError (int error);
 //Prints an error according to the number supplied
