@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-#define 	BORDER		2 
+#define 	BORDER		2
+#define 	INSIDE		1 
 
 FILE *openFile (char *input);
 //Function which opens the file for reading

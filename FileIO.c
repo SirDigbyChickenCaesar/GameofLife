@@ -85,8 +85,8 @@ void copyBoard (FILE *input, char **fileBoard, int height, int width)
 {
 	int 	i, j;
 
-	for (i = BORDER; i < height; i++)
-		for (j = BORDER; j < width; j++) {
+	for (i = INSIDE; i < height + INSIDE; i++)
+		for (j = INSIDE; j < width + INSIDE; j++) {
 			fscanf(input, "\n%c", &fileBoard[i][j]);
 		}
 }
