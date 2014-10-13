@@ -50,33 +50,57 @@ void lifeDecider (char **gameBoard, int **cellDeath, int height, int width)
 
 	for (i = INSIDE; i < height + INSIDE; i++)
 		for (j = INSIDE; j < width + INSIDE; j++) {
-			if (gameBoard[i][j] == '#')
+			//if (gameBoard[i][j] == '#')
 			{
-				if (gameBoard[i+CELL_BELOW][j] == '#')
+				if (gameBoard[i+CELL_BELOW][j] == '#') //CELL BELOW
 				{
 					cnt++;
-					cellDeath[i][j] == cnt;
+					cellDeath[i][j] = cnt;
 				}
-				if (gameBoard[i-CELL_ABOVE][j] == '#')
+				if (gameBoard[i-CELL_ABOVE][j] == '#') //CELL ABOVE
 				{
 					cnt++;
-					cellDeath[i][j] == cnt;
+					cellDeath[i][j] = cnt;
 				}
-				if (gameBoard[i][j+CELL_RIGHT] == '#')
+				if (gameBoard[i][j+CELL_RIGHT] == '#') //CELL TO THE RIGHT
 				{
 					cnt++;
-					cellDeath[i][j] == cnt;
+					cellDeath[i][j] = cnt;
 				}
-				if (gameBoard[i][j-CELL_LEFT] == '#')
+				if (gameBoard[i][j-CELL_LEFT] == '#') //CELL TO THE RIGHT
 				{
 					cnt++;
-					cellDeath[i][j] == cnt;
+					cellDeath[i][j] = cnt;
 				}
+				if (gameBoard[i-CELL_ABOVE][j-CELL_LEFT] == '#') //CELL TOP LEFT
+				{
+					cnt++;
+					cellDeath[i][j] = cnt;
+				}
+				if (gameBoard[i-CELL_ABOVE][j+CELL_RIGHT] == '#') //CELL TOP RIGHT
+				{
+					cnt++;
+					cellDeath[i][j] = cnt;
+				}
+				if (gameBoard[i+CELL_BELOW][j-CELL_LEFT] == '#') //CELL BOTTOM LEFT
+				{
+					cnt++;
+					cellDeath[i][j] = cnt;
+				}
+				if (gameBoard[i+CELL_BELOW][j+CELL_RIGHT] == '#') //CELL BOTTOM RIGHT
+				{
+					cnt++;
+					cellDeath[i][j] = cnt;
+				}
+				cnt = RESET;
+				
 			}
+			//printf("Array[%d][%d] Count = %d\n", i, j, cnt);
 		}
-	for (i = 0; i < (height+BORDER); i++){
-		for (j = 0; j < (width+BORDER); j++){
- 			printf("%d", gameBoard[i][j]);
+
+	for (i = 0; i < height; i++) {
+		for (j = 0; j < width; j++){
+ 			printf("%d", cellDeath[i][j]);
  		}
  		printf("\n");
 	}

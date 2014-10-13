@@ -20,5 +20,5 @@ int main (int argc, char *argv[])
 	closeFile (file);
 	/*------------Game Play-------------*/
 	ruleBoard = createRuleBoard (height, width);
-	//lifeDecider (gameBoard, ruleBoard, height, width);
+	lifeDecider (gameBoard, ruleBoard, height, width);
 }

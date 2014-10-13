@@ -7,7 +7,8 @@
 #define		CELL_ABOVE		1
 #define		CELL_RIGHT		1
 #define		CELL_LEFT		1
-#define 	INSIDE			1 
+#define 	INSIDE			1
+#define		RESET			0 
 
 void printArray (char **game, int height, int width);
 //This function prints the game board;
