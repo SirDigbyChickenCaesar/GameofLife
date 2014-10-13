@@ -1,6 +1,4 @@
 #include "printErr.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 void printError (int error)
 {

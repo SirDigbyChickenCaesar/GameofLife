@@ -1,7 +1,5 @@
 #include "FileIO.h"
 #include "printErr.h"
-#include <stdio.h>
-#include <stdlib.h>
 		
 
 FILE *openFile (char *input)
@@ -51,7 +49,7 @@ void getGameWidth (FILE *input, int *width)
 	}
 }
 
-char **createBoard (int height, int width)
+char **createBoard (FILE *input, int height, int width)
 {
 	char 	**gameBoard;
 	int		i, j;
@@ -71,15 +69,9 @@ char **createBoard (int height, int width)
 			printError(MALLOCERROR);
 		}
 	}
-	return gameBoard;
-}
-
-void copyBoard (FILE *input, char **fileBoard, int height, int width)
-{
-	int 	i, j;
-
 	for (i = INSIDE; i < height + INSIDE; i++)
 		for (j = INSIDE; j < width + INSIDE; j++) {
-			fscanf(input, "\n%c", &fileBoard[i][j]);
+			fscanf(input, "\n%c", &gameBoard[i][j]);
 		}
+	return gameBoard;
 }

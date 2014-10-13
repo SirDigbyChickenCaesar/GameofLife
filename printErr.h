@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define 	NOARGUMENT		1
 #define		NOFILE			2
