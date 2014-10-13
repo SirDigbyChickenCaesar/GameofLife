@@ -17,7 +17,8 @@ int main (int argc, char *argv[])
 	getGameWidth (file, pWidth);
 	gameBoard = createBoard (file, height, width);
 	printArray (gameBoard, height, width);
-	ruleBoard = createRuleBoard (height, width);
-	//printArray (ruleBoard, height, width);
 	closeFile (file);
+	/*------------Game Play-------------*/
+	ruleBoard = createRuleBoard (height, width);
+	//lifeDecider (gameBoard, ruleBoard, height, width);
 }
