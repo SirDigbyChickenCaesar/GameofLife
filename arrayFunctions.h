@@ -15,4 +15,5 @@ void printArray (char **game, int height, int width);
 int **createRuleBoard (int height, int width);
 //Creates the board which determines if a cell lives or dies
 void lifeDecider (char **gameBoard, int **cellDeath, int height, int width);
+void lifeRules (char **gameBoard, int **cellDeath, int height, int width, int i, int j, int cnt);
 
