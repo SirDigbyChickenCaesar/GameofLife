@@ -1,4 +1,6 @@
 #include "arrayFunctions.h"
+#include "FileIO.h"
+#include "printErr.h"
 
 
 void printArray (char **game, int height, int width)
@@ -13,10 +15,10 @@ void printArray (char **game, int height, int width)
 	}
 }
 
-int **createRuleBoard (int height, int width)
+int **createRuleBoard (int height, int width, char **initialBoard)
 {
 	int 	**gameBoard;
-	int		i, j;
+	int		i;
 
 	gameBoard = calloc ((height+BORDER), sizeof(int*));
 	{
@@ -33,36 +35,22 @@ int **createRuleBoard (int height, int width)
 			printError(MALLOCERROR);
 		}
 	}
-	// for (i = 0; i < (height+BORDER); i++){
-	// 	for (j = 0; j < (width+BORDER); j++){
-	// 		printf("%d", gameBoard[i][j]);
-	// 	}
-	// 	printf("\n");
-	// }
-
 	return gameBoard;
 }
 
-void lifeDecider (char **gameBoard, int **cellDeath, int height, int width)
+int **lifeDecider (char **gameBoard, int **cellDeath, int height, int width)
 {
 	int 	i, j, cnt = 0;
 
 
-	for (i = INSIDE; i < height + INSIDE; i++)
-		for (j = INSIDE; j < width + INSIDE; j++) {
+	for (i = INSIDE; i < height + INSIDE % height; i++) //POSSIBLE SOURCE OF ERROR
+		for (j = INSIDE; j < width + INSIDE % width; j++) {
 			{
 				lifeRules (gameBoard, cellDeath, height, width, i, j, cnt);
 			}
-			//printf("Array[%d][%d] Count = %d\n", i, j, cnt);
 		}
-
-	for (i = 0; i < height; i++) {
-		for (j = 0; j < width; j++){
- 			printf("%d", cellDeath[i][j]);
- 		}
- 		printf("\n");
-	}
-
+	//successorGeneration(gameBoard, cellDeath, height, width);
+	return cellDeath;
 }
 
 void lifeRules (char **gameBoard, int **cellDeath, int height, int width, int i, int j, int cnt)
@@ -110,4 +98,48 @@ void lifeRules (char **gameBoard, int **cellDeath, int height, int width, int i,
 	}
 	cnt = RESET;
 
+}
+
+char **generateCharBoard (int height, int width)
+{
+	char	**newGeneration;
+	int		i, j;
+
+	newGeneration = createBoard(height, width);
+	printf("\n");
+
+ 	for (i = 0; i < height+BORDER; i++)
+ 		for (j = 0; j < width+BORDER; j++)
+ 		{
+ 			newGeneration[i][j] = '-';
+ 		}
+ 	return newGeneration;
+}
+
+char **successorGeneration (char **initialBoard, int **ruleBoard, int height, int width)
+{
+	char	**sGeneration;
+	int		i, j;
+
+	sGeneration = generateCharBoard (height, width);
+	for (i = 0; i < height+BORDER; i++)
+		for (j = 0; j < width+BORDER; j++)
+		{
+			if (initialBoard[i][j] == '-')
+			{
+				if (ruleBoard[i][j] == 3)
+				{
+					sGeneration[i][j] = '#';
+				}
+			}
+			if (initialBoard[i][j] == '#')
+			{
+				if (ruleBoard[i][j] == 2 || ruleBoard[i][j] == 3)
+				{
+					sGeneration[i][j] = '#';
+				}
+			}
+		}
+	printArray(sGeneration, height, width);
+	return sGeneration;
 }

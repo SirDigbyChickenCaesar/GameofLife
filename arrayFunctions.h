@@ -12,8 +12,12 @@
 
 void printArray (char **game, int height, int width);
 //This function prints the game board;
-int **createRuleBoard (int height, int width);
+int **createRuleBoard (int height, int width, char **initialBoard);
 //Creates the board which determines if a cell lives or dies
-void lifeDecider (char **gameBoard, int **cellDeath, int height, int width);
+int **lifeDecider (char **gameBoard, int **cellDeath, int height, int width);
+//Decides with cells live or die
 void lifeRules (char **gameBoard, int **cellDeath, int height, int width, int i, int j, int cnt);
-
+//internal function which lifeDecider uses. You don't need to know what it does.
+char **generateCharBoard (int height, int width); 
+//Dynamically creates a 2D array of height+1 and width+1 and initiliases with '-'
+char **successorGeneration (char **initialBoard, int **ruleBoard, int height, int width);

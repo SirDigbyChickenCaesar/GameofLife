@@ -49,10 +49,10 @@ void getGameWidth (FILE *input, int *width)
 	}
 }
 
-char **createBoard (FILE *input, int height, int width)
+char **createBoard (int height, int width)
 {
 	char 	**gameBoard;
-	int		i, j;
+	int		i;
 
 	gameBoard = malloc ((height+BORDER)*sizeof(char*));
 	{
@@ -69,9 +69,15 @@ char **createBoard (FILE *input, int height, int width)
 			printError(MALLOCERROR);
 		}
 	}
+	return gameBoard;
+}
+
+void fileCopy (FILE* input, char **gameBoard, int height, int width)
+{
+	int		i, j;
+
 	for (i = INSIDE; i < height + INSIDE; i++)
 		for (j = INSIDE; j < width + INSIDE; j++) {
 			fscanf(input, "\n%c", &gameBoard[i][j]);
 		}
-	return gameBoard;
 }
